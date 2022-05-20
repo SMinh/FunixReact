@@ -15,13 +15,13 @@ function RenderDish(dish) {
   else return <div></div>;
 }
 
-function RenderComment(comments) {
-  if (comments != null) {
+function RenderComment(dish) {
+  if (dish != null) {
     return (
-      <div key={comments.id}>
+      <div key={dish.id}>
         <h4>Comments</h4>
         <ul className="list-unstyled">
-          {comments.map((comment) => {
+          {dish.comments.map((comment) => {
             return (
               <li>
                 <p>{comment.comment}</p>
@@ -44,17 +44,15 @@ function RenderComment(comments) {
   }
 }
 
-const Dishdetail = (props) => {
+const DishDetail = (props) => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-12 col-md-5 m-1">{this.renderDish(props.dish)}</div>
-        <div className="col-12 col-md-5 m-1">
-          {this.renderComment(props.dish.comments)}
-        </div>
+        <div className="col-12 col-md-5 m-1">{RenderDish(props.dish)}</div>
+        <div className="col-12 col-md-5 m-1">{RenderComment(props.dish)}</div>
       </div>
     </div>
   );
 };
 
-export default Dishdetail;
+export default DishDetail;
