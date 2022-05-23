@@ -20,6 +20,13 @@ class Main extends Component {
     };
   }
 
+  addNewStaff = (newStaff) => {
+    console.log(newStaff);
+    this.setState({
+      staffs: [...this.state.staffs, newStaff],
+    });
+  };
+
   render() {
     const StaffWithId = ({ match }) => {
       return (
@@ -39,7 +46,12 @@ class Main extends Component {
           <Route
             exact
             path="/staff"
-            component={() => <Staffs staffs={this.state.staffs} />}
+            component={() => (
+              <Staffs
+                staffs={this.state.staffs}
+                addNewStaff={this.addNewStaff}
+              />
+            )}
           />
           <Route
             exact
