@@ -8,6 +8,7 @@ import {
   CardImgOverlay,
   Breadcrumb,
   BreadcrumbItem,
+  Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
@@ -51,6 +52,9 @@ function RenderComments(comments) {
             );
           })}
         </ul>
+        <Button outline onClick={this.toggleModal}>
+          <span className="fa fa-pen fa-lg"></span> Login
+        </Button>
       </div>
     );
   } else {

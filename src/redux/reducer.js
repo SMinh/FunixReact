@@ -8,6 +8,7 @@ export const initialState = {
   comments: COMMENTS,
   promotions: PROMOTIONS,
   leaders: LEADERS,
+  isModalCommentFormOpen: false,
 };
 
 export const Reducer = (state = initialState, action) => {
