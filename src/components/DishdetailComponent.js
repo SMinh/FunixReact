@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardImg,
@@ -8,57 +8,69 @@ import {
   CardImgOverlay,
   Breadcrumb,
   BreadcrumbItem,
+  Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-
-function RenderDish(dish) {
-  console.log(dish);
-  if (dish != null) {
-    return (
-      <Card>
-        <CardImg src={dish.dish.image} alt={dish.dish.name} />
-        <CardImgOverlay>
-          <CardTitle>{dish.dish.name}</CardTitle>
-        </CardImgOverlay>
-      </Card>
-    );
-  } else {
-    return <div></div>;
-  }
-}
-
-function RenderComments(comments) {
-  console.log(comments);
-
-  if (comments != null) {
-    return (
-      <div>
-        <h4>Comments</h4>
-        <ul className="list-unstyled">
-          {comments.comments.map((comment) => {
-            return (
-              <li key={comment.id}>
-                <p>{comment.comment}</p>
-                <p>
-                  --{comment.author},{" "}
-                  {new Intl.DateTimeFormat("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "2-digit",
-                  }).format(new Date(Date.parse(comment.date)))}
-                </p>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    );
-  } else {
-    return <div></div>;
-  }
-}
+import CommentForm from "./CommentForm";
 
 const DishDetail = (props) => {
+  const [isCommentForm, setIsCommentForm] = useState(false);
+
+  const toggleModalComment = () => {
+    setIsCommentForm(!isCommentForm);
+    console.log(isCommentForm);
+  };
+
+  function RenderDish(dish) {
+    console.log(dish);
+    if (dish != null) {
+      return (
+        <Card>
+          <CardImg src={dish.dish.image} alt={dish.dish.name} />
+          <CardImgOverlay>
+            <CardTitle>{dish.dish.name}</CardTitle>
+          </CardImgOverlay>
+        </Card>
+      );
+    } else {
+      return <div></div>;
+    }
+  }
+
+  function RenderComments(comments) {
+    console.log(comments);
+
+    if (comments != null) {
+      return (
+        <div>
+          <h4>Comments</h4>
+          <ul className="list-unstyled">
+            {comments.comments.map((comment) => {
+              return (
+                <li key={comment.id}>
+                  <p>{comment.comment}</p>
+                  <p>
+                    --{comment.author},{" "}
+                    {new Intl.DateTimeFormat("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "2-digit",
+                    }).format(new Date(Date.parse(comment.date)))}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+          <Button color="primary" onClick={toggleModalComment}>
+            <span className="fa fa-edit fa-lg"></span> Submit
+          </Button>
+        </div>
+      );
+    } else {
+      return <div></div>;
+    }
+  }
+
   if (props.dish != null)
     return (
       <div className="container">
@@ -82,8 +94,11 @@ const DishDetail = (props) => {
             <RenderComments comments={props.comments} />
           </div>
         </div>
+        <CommentForm
+          isCommentForm={isCommentForm}
+          toggleModalComment={toggleModalComment}
+        />
       </div>
     );
 };
-
 export default DishDetail;
