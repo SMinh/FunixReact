@@ -18,13 +18,15 @@ const DishDetail = (props) => {
     setIsCommentForm(!isCommentForm);
   };
 
-  function RenderDish(dish) {
+  console.log(props);
+
+  function RenderDish({ dish }) {
     if (dish != null) {
       return (
         <Card>
-          <CardImg src={dish.dish.image} alt={dish.dish.name} />
+          <CardImg src={dish.image} alt={dish.name} />
           <CardImgOverlay>
-            <CardTitle>{dish.dish.name}</CardTitle>
+            <CardTitle>{dish.name}</CardTitle>
           </CardImgOverlay>
         </Card>
       );
@@ -33,16 +35,17 @@ const DishDetail = (props) => {
     }
   }
 
-  function RenderComments(comments, addComment, dishId) {
+  function RenderComments({ comments, addComment, dishId }) {
     console.log(comments);
-    console.log(comments);
+    console.log(addComment);
+    console.log(dishId);
 
     if (comments != null) {
       return (
         <div>
           <h4>Comments</h4>
           <ul className="list-unstyled">
-            {comments.comments.map((comment) => {
+            {comments.map((comment) => {
               return (
                 <li key={comment.id}>
                   <p>{comment.comment}</p>
@@ -64,8 +67,8 @@ const DishDetail = (props) => {
           <CommentForm
             isCommentForm={isCommentForm}
             toggleModalComment={toggleModalComment}
-            dishId={comments.dishId}
-            addComment={comments.addComment}
+            dishId={dishId}
+            addComment={addComment}
           />
           {console.log({ addComment })}
           {console.log({ dishId })}
