@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import {
   Card,
   CardImg,
-  CardText,
-  CardBody,
   CardTitle,
   CardImgOverlay,
   Breadcrumb,
@@ -18,11 +16,9 @@ const DishDetail = (props) => {
 
   const toggleModalComment = () => {
     setIsCommentForm(!isCommentForm);
-    console.log(isCommentForm);
   };
 
   function RenderDish(dish) {
-    console.log(dish);
     if (dish != null) {
       return (
         <Card>
@@ -37,7 +33,8 @@ const DishDetail = (props) => {
     }
   }
 
-  function RenderComments(comments) {
+  function RenderComments(comments, addComment, dishId) {
+    console.log(comments);
     console.log(comments);
 
     if (comments != null) {
@@ -64,6 +61,14 @@ const DishDetail = (props) => {
           <Button color="primary" onClick={toggleModalComment}>
             <span className="fa fa-edit fa-lg"></span> Submit
           </Button>
+          <CommentForm
+            isCommentForm={isCommentForm}
+            toggleModalComment={toggleModalComment}
+            dishId={comments.dishId}
+            addComment={comments.addComment}
+          />
+          {console.log({ addComment })}
+          {console.log({ dishId })}
         </div>
       );
     } else {
@@ -91,13 +96,13 @@ const DishDetail = (props) => {
             <RenderDish dish={props.dish} />
           </div>
           <div className="col-12 col-md-5 m-1">
-            <RenderComments comments={props.comments} />
+            <RenderComments
+              comments={props.comments}
+              addComment={props.addComment}
+              dishId={props.dish.id}
+            />
           </div>
         </div>
-        <CommentForm
-          isCommentForm={isCommentForm}
-          toggleModalComment={toggleModalComment}
-        />
       </div>
     );
 };

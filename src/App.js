@@ -1,8 +1,4 @@
-import logo from "./logo.svg";
 import React, { Component } from "react";
-import { DISHES } from "./shared/dishes";
-import { Navbar, NavbarBrand } from "reactstrap";
-import Menu from "./components/MenuComponent";
 import { BrowserRouter } from "react-router-dom";
 import Main from "./components/MainComponent";
 import { Provider } from "react-redux";
