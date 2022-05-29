@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import CommentForm from "./CommentForm";
 import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 
 const DishDetail = (props) => {
   const [isCommentForm, setIsCommentForm] = useState(false);
@@ -28,7 +29,7 @@ const DishDetail = (props) => {
     if (dish != null) {
       return (
         <Card>
-          <CardImg src={dish.image} alt={dish.name} />
+          <CardImg top src={baseUrl + dish.image} alt={dish.name} />
           <CardImgOverlay>
             <CardTitle>{dish.name}</CardTitle>
           </CardImgOverlay>
