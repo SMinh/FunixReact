@@ -20,12 +20,7 @@ const DishDetail = (props) => {
     setIsCommentForm(!isCommentForm);
   };
 
-  console.log(props);
-
-  function RenderDish(dish) {
-    console.log(dish);
-    console.log({ dish });
-
+  function RenderDish({ dish }) {
     if (dish != null) {
       return (
         <Card>
@@ -40,11 +35,7 @@ const DishDetail = (props) => {
     }
   }
 
-  function RenderComments({ comments, addComment, dishId }) {
-    console.log(comments);
-    console.log(addComment);
-    console.log(dishId);
-
+  function RenderComments({ comments, postComment, dishId }) {
     if (comments != null) {
       return (
         <div>
@@ -73,10 +64,8 @@ const DishDetail = (props) => {
             isCommentForm={isCommentForm}
             toggleModalComment={toggleModalComment}
             dishId={dishId}
-            addComment={addComment}
+            postComment={postComment}
           />
-          {console.log({ addComment })}
-          {console.log({ dishId })}
         </div>
       );
     } else {
@@ -122,7 +111,7 @@ const DishDetail = (props) => {
           <div className="col-12 col-md-5 m-1">
             <RenderComments
               comments={props.comments}
-              addComment={props.addComment}
+              postComment={props.postComment}
               dishId={props.dish.id}
             />
           </div>

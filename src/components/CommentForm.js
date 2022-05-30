@@ -23,10 +23,7 @@ class CommentForm extends Component {
   }
 
   handleSubmit(values) {
-    console.log("Current State is: " + JSON.stringify(values));
-    console.log("addComment " + this.props.addComment);
-
-    this.props.addComment(
+    this.props.postComment(
       this.props.dishId,
       values.rating,
       values.author,
@@ -46,7 +43,7 @@ class CommentForm extends Component {
           <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
             <Row className="form-group">
               <Label htmlFor="rating" md={4}>
-                Last Name
+                Rating
               </Label>
               <Col md={8}>
                 <Control.select
@@ -66,7 +63,7 @@ class CommentForm extends Component {
 
             <Row className="form-group">
               <Label htmlFor="author" md={4}>
-                Contact Tel.
+                Name
               </Label>
               <Col md={8}>
                 <Control.text
